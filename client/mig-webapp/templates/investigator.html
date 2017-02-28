@@ -1,44 +1,30 @@
 <md-content ng-cloak>
-
     <md-toolbar id="investigatorToolbar" class="md-hue-4" ng-cloak>
         <div class="md-toolbar-tools">
             <!--FIX ME: Damn it! not toggling-->
             <md-button ng-click="toggleSideNav()" class="md-icon-button" aria-label="modules label">
                 <md-icon md-svg-icon="./img/icons/ic_menu_white_24px.svg"></md-icon>
-            </md-button>
-            <span flex></span>
-
-        </div>
+            </md-button> <span flex></span> </div>
     </md-toolbar>
     <!--    <div layout="column" flex>-->
     <md-content layout layout="row" flex>
         <!--            <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">-->
         <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
-
             <md-toolbar class="md-theme-indigo">
-                <h1 class="md-toolbar-tools">Investigators</h1>
-            </md-toolbar>
+                <h1 class="md-toolbar-tools">Investigators</h1> </md-toolbar>
             <md-content layout-padding>
                 <md-input-container layout="column">
                     <md-button flex id="investigators" ng-click="createInvestigator($event)" layout="row">
-                        <div flex>
-                            +Add new Investigator
-                        </div>
+                        <div flex> +Add new Investigator </div>
                     </md-button>
-                    <md-button flex id="investigators" ng-click="showInvestigator($index)" layout="row" ng-repeat="invest in allInvestigators">
-                        <span flex></span>
-                        <div flex>
-                            {{invest.data[0].value.name}}
-                        </div>
-                        <span flex></span>
+                    <md-button flex id="investigators" ng-click="showInvestigator($index)" layout="row" ng-repeat="invest in allInvestigators"> <span flex></span>
+                        <div flex> {{invest.data[0].value.name}} </div> <span flex></span>
                         <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
                     </md-button>
                 </md-input-container>
             </md-content>
-
         </md-sidenav>
         <div ng-if="investigatorSelected" flex>
-
             <table id="investigatorTable">
                 <tr>
                     <th>Create Date</th>
@@ -56,20 +42,20 @@
                     <th>Last Modified</th>
                     <td>{{allInvestigators[investIndex].data[0].value.lastmodified}}</td>
                 </tr>
-                <!--Changes: public key not present in api response-->
-                <!-- <tr>
+                <!--Changes: change var names-->
+                <tr>
                     <th>Public Key</th>
-                    <td>{{allInvestigators[investIndex].data[0].value.publickey}}</td>
-                </tr>-->
+                    <td ng-if="showKeyVar">
+                        <md-button class="md-raised" ng-click="showKey(showKeyVar)">Show</md-button>
+                        <!--                        <div ng-click="showPgp(showPgpVar)">Show</div>-->
+                    </td>
+                    <td ng-if="!showKeyVar">
+                        <md-button ng-click="showKey(showKeyVar)" class="md-raised">{{allInvestigators[investIndex].data[0].value.publickey}}</md-button>
+                    </td>
+                </tr>
                 <tr>
                     <th>pgp Fingerprint</th>
-                    <td ng-if="showPgpVar">
-                        <md-button class="md-raised" ng-click="showPgp(showPgpVar)">Show</md-button>
-                    </td>
-                    <td ng-if="!showPgpVar">
-                        <!--TODO: give abillity to copy the key too-->
-                        <md-button ng-click="showPgp(showPgpVar)" class="md-raised">{{allInvestigators[investIndex].data[0].value.pgpfingerprint}}</md-button>
-                    </td>
+                    <td> {{allInvestigators[investIndex].data[0].value.pgpfingerprint}} </td>
                 </tr>
                 <tr>
                     <th>Status</th>
@@ -85,109 +71,55 @@
                 <legend>Permissions</legend>
                 <div layout-wrap layout="row" layout-align="space-around">
                     <div layout="column">
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.action" aria-label="Checkbox 1">
-                            View actions
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.action_create" aria-label="Checkbox 1">
-                            Create actions
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.agent" aria-label="Checkbox 1">
-                            View agents
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.command" aria-label="Checkbox 1">
-                            View commands
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.dashboard" aria-label="Checkbox 1">
-                            View dashboard
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.investigator" aria-label="Checkbox 1">
-                            View investigators
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.investigator_create" aria-label="Checkbox 1">
-                            Create investigators
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.investigator_update" aria-label="Checkbox 1">
-                            Update investigators
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader" aria-label="Checkbox 1">
-                            View loaders
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_expect" aria-label="Checkbox 1">
-                            Update loader expected env
-                        </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.action" aria-label="Checkbox 1"> View actions </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.action_create" aria-label="Checkbox 1"> Create actions </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.agent" aria-label="Checkbox 1"> View agents </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.command" aria-label="Checkbox 1"> View commands </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.dashboard" aria-label="Checkbox 1"> View dashboard </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.investigator" aria-label="Checkbox 1"> View investigators </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.investigator_create" aria-label="Checkbox 1"> Create investigators </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.investigator_update" aria-label="Checkbox 1"> Update investigators </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader" aria-label="Checkbox 1"> View loaders </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_expect" aria-label="Checkbox 1"> Update loader expected env </md-checkbox>
                     </div>
                     <div layout="column">
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_key" aria-label="Checkbox 1">
-                            Create loader key
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_new" aria-label="Checkbox 1">
-                            Create loaders
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_status" aria-label="Checkbox 1">
-                            View loaders status
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest" aria-label="Checkbox 1">
-                            View manifests
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_loaders" aria-label="Checkbox 1">
-                            View manifest loaders
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_new" aria-label="Checkbox 1">
-                            Create manifest
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_sign" aria-label="Checkbox 1">
-                            Sign manifest
-                        </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_status" aria-label="Checkbox 1">
-                            View manifest status
-                        </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_key" aria-label="Checkbox 1"> Create loader key </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_new" aria-label="Checkbox 1"> Create loaders </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_status" aria-label="Checkbox 1"> View loaders status </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest" aria-label="Checkbox 1"> View manifests </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_loaders" aria-label="Checkbox 1"> View manifest loaders </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_new" aria-label="Checkbox 1"> Create manifest </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_sign" aria-label="Checkbox 1"> Sign manifest </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_status" aria-label="Checkbox 1"> View manifest status </md-checkbox>
                     </div>
                 </div>
             </fieldset>
         </div>
     </md-content>
     <!--    </div>-->
-
 </md-content>
 <script type="text/ng-template " id="createInvestigator.tmpl.html ">
     <md-dialog aria-label="Orders " ng-cloak>
         <form>
             <md-toolbar>
                 <div class="md-toolbar-tools ">
-                    <h2>Create Investigator</h2>
-                    <span flex></span>
-                </div>
+                    <h2>Create Investigator</h2> <span flex></span> </div>
             </md-toolbar>
-
             <md-dialog-content layout-padding>
                 <div class="md-dialog-content " layout="column ">
                     <p>Provide name of the new investigator:</p>
                     <md-input-container>
                         <label>Name</label>
-                        <input name="invest_name" ng-model="investigatorName " required ng-pattern=" ">
-
-                    </md-input-container>
-                    Provide Public Key:
+                        <input name="invest_name" ng-model="investigatorName " required ng-pattern=" "> </md-input-container> Provide Public Key:
                     <br>
                     <div flex layout="" row>
-                        <md-button ng-click="uploadKey()" class="md-raised md-primary">
-                            File Upload
-                        </md-button>
-                        <span></span>
-                    </div>
+                        <md-button ng-click="uploadKey()" class="md-raised md-primary"> File Upload </md-button> <span></span> </div>
                     <textarea ng-model="publicKey" rows="3" md-select-on-focus placeholder="type key here"></textarea>
                 </div>
-
             </md-dialog-content>
-
             <md-dialog-actions layout="row ">
-                <md-button ng-click="cancel()">
-                    Cancel
-                </md-button>
-                <span flex></span>
-                <md-button ng-click="Create()" md-autofocus>
-                    Create
-                </md-button>
+                <md-button ng-click="cancel()"> Cancel </md-button> <span flex></span>
+                <md-button ng-click="Create()" md-autofocus> Create </md-button>
             </md-dialog-actions>
         </form>
     </md-dialog>
