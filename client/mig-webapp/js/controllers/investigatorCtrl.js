@@ -3,6 +3,7 @@ app.controller('investigatorCtrl', ['$scope', '$q', '$mdDialog', '$mdSidenav', '
     // var noOfInvestigators = 0;
     $scope.showKeyVar = 1;
     $scope.toggleSideNav = function () {
+        //        debugger;
         $mdSidenav('left').toggle();
     }
     $scope.investigator = [];
