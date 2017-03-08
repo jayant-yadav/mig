@@ -48,10 +48,9 @@
                     <th>Public Key</th>
                     <td ng-if="showKeyVar">
                         <md-button class="md-raised" ng-click="showKey(showKeyVar)">Show</md-button>
-                        <!--                        <div ng-click="showPgp(showPgpVar)">Show</div>-->
                     </td>
                     <td ng-if="!showKeyVar">
-                        <md-button ng-click="showKey(showKeyVar)" class="md-raised">{{allInvestigators[investIndex].data[0].value.publickey}}</md-button>
+                        <md-button id="publicKeyBtn" ng-click="showKey(showKeyVar)" class="md-raised">{{allInvestigators[investIndex].data[0].value.publickey}}</md-button>
                     </td>
                 </tr>
                 <tr>
@@ -113,8 +112,13 @@
                         <label>Name</label>
                         <input name="invest_name" ng-model="investigatorName " required ng-pattern=" "> </md-input-container> Provide Public Key:
                     <br>
-                    <div flex layout="" row>
-                        <md-button ng-click="uploadKey()" class="md-raised md-primary"> File Upload </md-button> <span></span> </div>
+                    <br>
+                    <!--                    <div flex layout="row">-->
+                    <!--                        <md-button ng-click="uploadKey()" class="md-raised md-primary"> File Upload </md-button> -->
+                    <input type="file" id="publickKeyFile" ng-click="pubKeyFile(this.files)">
+                    <br>
+                    <div layout="row"><span></span>OR<span></span></div>
+                    <!--                    </div>-->
                     <textarea ng-model="publicKey" rows="3" md-select-on-focus placeholder="type key here"></textarea>
                 </div>
             </md-dialog-content>

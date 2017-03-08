@@ -6,3 +6,20 @@
 #investigatorTable {
     width:100% ;
 }
+
+#investigatorTable th{
+    min-width: 200px;
+}
+
+#publicKeyBtn {
+    max-width: 400px;
+    height      : auto;
+/*text-align  : center;*/
+white-space: normal;
+display: inline-block;
+border      : 0px;
+    padding-left:10px;
+    padding-right:10px;
+/*    min-width:100px;*/
+    
+}

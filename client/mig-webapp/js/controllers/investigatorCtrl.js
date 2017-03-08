@@ -64,6 +64,54 @@ app.controller('investigatorCtrl', ['$scope', '$q', '$mdDialog', '$mdSidenav', '
             }])
 var createInvestigatorCtrl = function ($scope, $mdDialog, $http, $mdToast) {
     $scope.Create = function () {
+        //        call api here. /tmp/pubkey.key is sent in req.
+        //        var selectedFile1 = document.getElementById('publickKeyFile').files[0];
+        var selectedFile1 = document.getElementById('publickKeyFile').files[0];
+        //var w = window.open(selectedFile1);
+        //console.log(w.print());
+        //        var selectedFile2 = angular.element('publickKeyFile');
+        /* $scope.pubKeyFile = function (file) {
+             var selectedFile = file;
+         }*/
+        var reader = new FileReader();
+        reader.onload = function () {
+            //var output = document.getElementById('publickKeyFile');
+            selectedFile1.src = reader.result;
+            console.log(selectedFile1.src);
+        };
+        //        reader.readAsDataURL(event.target.files[0]);
+        console.log(reader);
+        $http({
+            method: 'POST'
+            , url: '../api/v1/investigator/create/'
+            , headers: {
+                'Content-Type': undefined
+            }
+            , /* headers: {
+                               'Content-Type': 'application/x-www-form-urlencoded'
+                              'Content-Type': 'multipart/form-data'
+                               'Content-Type': undefined
+                                  
+                              , 'boundary': "-XXX---" 
+                                                       }
+                              ,*/
+            /*, transformRequest: function (obj) {
+                           var str = [];
+                           for (var p in obj) str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                           return str.join("&");
+                       }*/
+            data: {
+                name: $scope.investigatorName
+                , publickey: selectedFile1
+                , permissions: '{"search":true,"dashboard":true}'
+            }
+        }).success(function (response) {
+            console.log(response);
+        }).error(function (err) {
+            console.log(err);
+        });
+        //        console.log(selectedFile2);
+        //        console.log(selectedFile);
         $mdToast.show($mdToast.simple().textContent('Investigator Created!').position('right').hideDelay(3000));
         $mdDialog.hide();
     }
