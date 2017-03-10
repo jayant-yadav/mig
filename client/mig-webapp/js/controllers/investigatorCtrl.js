@@ -24,8 +24,7 @@ app.controller('investigatorCtrl', ['$scope', '$q', '$mdDialog', '$mdSidenav', '
             for (var i in $scope.allInvestigators) {
                 if (response[i].status == 200) {
                     $scope.allInvestigators[i].data[0].value.publickey = response[i].data.collection.items[0].data[0].value.publickey;
-                }
-                else {
+                } else {
                     console.log(response[i].data);
                 }
             }
@@ -37,11 +36,11 @@ app.controller('investigatorCtrl', ['$scope', '$q', '$mdDialog', '$mdSidenav', '
     $scope.createInvestigator = function (ev) {
         $mdDialog.show({
             //                controller: CreateOrder,
-            controller: createInvestigatorCtrl
-            , templateUrl: 'createInvestigator.tmpl.html', //                templateUrl: '.view/createOrder.tmpl.html',
-            parent: angular.element(document.body)
-            , targetEvent: ev
-            , clickOutsideToClose: true
+            controller: createInvestigatorCtrl,
+            templateUrl: 'createInvestigator.tmpl.html', //                templateUrl: '.view/createOrder.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
         }).then(function (answer) {
             //                $scope.status = 'You said the information was "' + answer + '".';                 
         }, function () {
@@ -81,37 +80,67 @@ var createInvestigatorCtrl = function ($scope, $mdDialog, $http, $mdToast) {
         };
         //        reader.readAsDataURL(event.target.files[0]);
         console.log(reader);
-        $http({
-            method: 'POST'
-            , url: '../api/v1/investigator/create/'
-            , headers: {
-                'Content-Type': undefined
-            }
-            , /* headers: {
-                               'Content-Type': 'application/x-www-form-urlencoded'
-                              'Content-Type': 'multipart/form-data'
-                               'Content-Type': undefined
-                                  
-                              , 'boundary': "-XXX---" 
-                                                       }
-                              ,*/
-            /*, transformRequest: function (obj) {
-                           var str = [];
-                           for (var p in obj) str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                           return str.join("&");
-                       }*/
-            data: {
-                name: $scope.investigatorName
-                , publickey: selectedFile1
-                , permissions: '{"search":true,"dashboard":true}'
-            }
-        }).success(function (response) {
-            console.log(response);
-        }).error(function (err) {
-            console.log(err);
-        });
-        //        console.log(selectedFile2);
-        //        console.log(selectedFile);
+        if ($scope.publicKey) {
+
+            $http({
+                method: 'POST',
+                url: '../api/v1/investigator/create/',
+                headers: {
+                    'Content-Type': "multipart/form-data",
+                    //                'Content-Type': undefined
+                },
+                data: {
+                    name: $scope.investigatorName,
+                    publickey: $scope.publicKey,
+                    permissions: '{"search":true,"dashboard":true}'
+                }
+            }).success(function (response) {
+                console.log(response);
+            }).error(function (err) {
+                console.log(err);
+            });
+        } else {
+
+            var fd = new FormData();
+            fd.append('name', $scope.investigatorName);
+            //            fd.append('publickey', "/tmp/pubkey");
+            fd.append('publickey', selectedFile1);
+            fd.append('permissions', '{"search":true,"dashboard":true}');
+            $http.post('../api/v1/investigator/create/', fd, {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                            //  'Content-Type': "multipart/form-data"
+                    }
+                })
+                .success(function (response) {
+                    console.log(response);
+                })
+                .error(function (err) {
+                    console.log(err);
+                });
+
+            /*$http({
+                method: 'POST',
+                url: '../api/v1/investigator/create/',
+                headers: {
+                    'Content-Type': "multipart/form-data",
+                    //                    'Content-Type': undefined
+                    //                    'Content-Type': "application/json"
+                },
+                data: {
+                    name: $scope.investigatorName,
+                    //publickey: selectedFile1,
+                    publickey: "/tmp/pubkey",
+                    permissions: '{"search":true,"dashboard":true}'
+                }
+            }).success(function (response) {
+                console.log(response);
+            }).error(function (err) {
+                console.log(err);
+            });*/
+        }
+
         $mdToast.show($mdToast.simple().textContent('Investigator Created!').position('right').hideDelay(3000));
         $mdDialog.hide();
     }
