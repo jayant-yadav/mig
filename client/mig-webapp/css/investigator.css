@@ -23,3 +23,7 @@ border      : 0px;
 /*    min-width:100px;*/
     
 }
+
+#initDiv {
+    min-height:500px;
+}

@@ -1,0 +1,103 @@
+<md-content ng-cloak>
+    <md-toolbar id="actionToolbar" class="md-hue-4" ng-cloak>
+        <div class="md-toolbar-tools">
+            <!--FIX ME: Damn it! not toggling-->
+            <md-button ng-click="toggleSideNav()" class="md-icon-button" aria-label="modules label">
+                <md-icon md-svg-icon="./img/icons/ic_menu_white_24px.svg"></md-icon>
+            </md-button> <span flex></span> </div>
+    </md-toolbar>
+    <!--    <div layout="column" flex>-->
+    <md-content layout layout="row" flex>
+        <!--            <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">-->
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Action Orders</h1> </md-toolbar>
+            <md-content layout-padding>
+                <md-input-container layout="column">
+                    <md-button class="md-primary " ng-click="addOperation() " flex layout="row"><span flex></span>
+                        <div flex>add operation</div><span flex></span>
+                        <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-primary " ng-click="action($event) " flex layout="row"><span flex></span>
+                        <div flex>compress</div><span flex></span>
+                        <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-primary " ng-click="action($event) " flex layout="row"><span flex></span>
+                        <div flex>list agents</div> <span flex></span>
+                        <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-primary " ng-click="action($event) " flex layout="row"><span flex></span>
+                        <div flex>delete operation</div> <span flex></span>
+                        <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-primary " ng-click="action($event) " flex layout="row"><span flex></span>
+                        <div flex>Details</div><span flex></span>
+                        <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-primary " ng-click="action($event) " flex layout="row"><span flex></span>
+                        <div flex>Json</div><span flex></span>
+                        <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-primary " ng-click="action($event) " flex layout="row"><span flex></span>
+                        <div flex>Launch</div><span flex></span>
+                        <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-primary " ng-click="action($event) " flex layout="row"><span flex></span>
+                        <div flex>Load</div><span flex></span>
+                        <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-primary " ng-click="action($event) " flex layout="row"><span flex></span>
+                        <div flex>Set Name</div><span flex></span>
+                        <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-primary " ng-click="action($event) " flex layout="row"><span flex></span>
+                        <div flex>Set Target</div><span flex></span>
+                        <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-primary " ng-click="action($event) " flex layout="row"><span flex></span>
+                        <div flex>Set times</div><span flex></span>
+                        <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-primary " ng-click="action($event) " flex layout="row"><span flex></span>
+                        <div flex>Sign</div><span flex></span>
+                        <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-primary " ng-click="action($event) " flex layout="row"><span flex></span>
+                        <div flex>Times</div><span flex></span>
+                        <md-icon flex md-svg-icon="./img/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+                    </md-button>
+                </md-input-container>
+            </md-content>
+        </md-sidenav>
+        <div flex layout-padding>
+            <md-select id="addModule" ng-model="addModule" placeholder="Select Module">
+                <md-option value="File">File</md-option>
+                <md-option value="Memory">Memory</md-option>
+                <md-option value="NetStat">NetStat</md-option>
+                <md-option value="Package">Package</md-option>
+                <md-option value="Scribe">Scribe</md-option>
+                <md-option value="Ping">Ping</md-option>
+                <md-option value="TimeDrift">TimeDrift</md-option>
+            </md-select>
+            <div flex ng-if="addModule">
+                Path:
+                <input ng-model="path">
+                <br>
+                <br> Name:
+                <input ng-model="name">
+                <br>
+                <br> Size:
+                <input ng-model="size">
+                <br>
+                <br> mode:
+                <input ng-model="mode">
+                <br>
+                <br> mtime:
+                <input ng-model="mtime">
+                <br>
+                <br> content:
+                <input ng-model="content">
+            </div>
+        </div>
+    </md-content>
+</md-content>

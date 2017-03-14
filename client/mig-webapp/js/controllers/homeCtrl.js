@@ -43,21 +43,8 @@ app.controller('homeCtrl', ['$scope', '$mdDialog', '$mdSidenav', '$state', '$htt
 
 
 
-    $scope.createOrder = function (ev) {
-        $mdDialog.show({
-                //                controller: CreateOrder,
-                controller: actionTemplCtrl,
-                templateUrl: 'action.tmpl.html',
-                //                templateUrl: '.view/createOrder.tmpl.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: true
-            })
-            .then(function (answer) {
-                //                $scope.status = 'You said the information was "' + answer + '".';
-            }, function () {
-                //                $scope.status = 'You cancelled the dialog.';
-            });
+    $scope.actionCreate = function (ev) {
+        $state.go('actionCreate');
     }
 
 

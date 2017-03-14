@@ -24,7 +24,7 @@
                 </md-input-container>
             </md-content>
         </md-sidenav>
-        <div ng-if="!investigatorSelected" flex>Select an Investigator</div>
+        <div ng-if="!investigatorSelected" flex id="initDiv">Select an Investigator</div>
         <div ng-if="investigatorSelected" flex>
             <table id="investigatorTable">
                 <tr>
@@ -71,26 +71,26 @@
                 <legend>Permissions</legend>
                 <div layout-wrap layout="row" layout-align="space-around">
                     <div layout="column">
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.action" aria-label="Checkbox 1"> View actions </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.action_create" aria-label="Checkbox 1"> Create actions </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.agent" aria-label="Checkbox 1"> View agents </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.command" aria-label="Checkbox 1"> View commands </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.dashboard" aria-label="Checkbox 1"> View dashboard </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.investigator" aria-label="Checkbox 1"> View investigators </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.investigator_create" aria-label="Checkbox 1"> Create investigators </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.investigator_update" aria-label="Checkbox 1"> Update investigators </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader" aria-label="Checkbox 1"> View loaders </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_expect" aria-label="Checkbox 1"> Update loader expected env </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.action" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> View actions </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.action_create" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> Create actions </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.agent" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> View agents </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.command" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> View commands </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.dashboard" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> View dashboard </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.investigator" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> View investigators </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.investigator_create" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> Create investigators </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.investigator_update" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> Update investigators </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> View loaders </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_expect" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> Update loader expected env </md-checkbox>
                     </div>
                     <div layout="column">
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_key" aria-label="Checkbox 1"> Create loader key </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_new" aria-label="Checkbox 1"> Create loaders </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_status" aria-label="Checkbox 1"> View loaders status </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest" aria-label="Checkbox 1"> View manifests </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_loaders" aria-label="Checkbox 1"> View manifest loaders </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_new" aria-label="Checkbox 1"> Create manifest </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_sign" aria-label="Checkbox 1"> Sign manifest </md-checkbox>
-                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_status" aria-label="Checkbox 1"> View manifest status </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_key" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> Create loader key </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_new" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> Create loaders </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.loader_status" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> View loaders status </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> View manifests </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_loaders" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> View manifest loaders </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_new" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> Create manifest </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_sign" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> Sign manifest </md-checkbox>
+                        <md-checkbox ng-model="allInvestigators[investIndex].data[0].value.permissions.manifest_status" ng-change="updateInvestigator(investIndex)" aria-label="Checkbox 1"> View manifest status </md-checkbox>
                     </div>
                 </div>
             </fieldset>
@@ -110,16 +110,29 @@
                     <p>Provide name of the new investigator:</p>
                     <md-input-container>
                         <label>Name</label>
-                        <input name="invest_name" ng-model="investigatorName " required ng-pattern=" "> </md-input-container> Provide Public Key:
+                        <input name="invest_name" ng-model="investigatorName" required ng-pattern=" "> </md-input-container>
+                    <div flex ng-if="investigatorName" layout="column">
+                        <p flex>Tick the box to add additional permissions to the investigator:</p>
+                        <p flex>(If this is the first investigator being added, you should make this investigator an admin.)</p>
+                        <div flex layout="column">
+                            <div flex>Allow investigator to manage users (admin)?<span flex></span>
+                                <md-checkbox ng-model="adminPerm" aria-label="Checkbox 1"></md-checkbox>
+                            </div>
+                            <div flex>Allow investigator to manage loaders?<span flex></span>
+                                <md-checkbox ng-model="loadersPerm" aria-label="Checkbox 2"></md-checkbox>
+                            </div>
+                            <div flex>Allow investigator to manage manifests?<span flex></span>
+                                <md-checkbox ng-model="manifestsPerm" aria-label="Checkbox 3"></md-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                    Provide Public Key:
                     <br>
                     <br>
-                    <!--                    <div flex layout="row">-->
-                    <!--                        <md-button ng-click="uploadKey()" class="md-raised md-primary"> File Upload </md-button> -->
-                    <input type="file" id="publickKeyFile" ng-click="pubKeyFile(this.files)">
+                    <input type="file" id="publickKeyFile">
                     <br>
                     <div layout="row"><span></span>OR<span></span></div>
-                    <!--                    </div>-->
-                    <textarea ng-model="publicKey" rows="3" md-select-on-focus placeholder="type key here"></textarea>
+                    <textarea ng-model="publicKey" rows="3" md-select-on-focus placeholder="type full length PGP fingerprint here"></textarea>
                 </div>
             </md-dialog-content>
             <md-dialog-actions layout="row ">
