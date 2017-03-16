@@ -195,6 +195,10 @@ func updateInvestigator(respWriter http.ResponseWriter, request *http.Request) {
 			if errStatus != nil || errInvperm != nil {
 				panic(err)
 			}
+			errInvperm = ctx.DB.UpdateInvestigatorPerms(inv)
+			if errInvperm != nil {
+				panic(err)
+			}
 			ctx.Channels.Log <- mig.Log{OpID: opid, Desc: fmt.Sprintf("Investigator %.0f permissions changed and status changed to %s", inv.ID, inv.Status)}
 		}
 	}
