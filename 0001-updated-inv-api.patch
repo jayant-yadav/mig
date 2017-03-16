@@ -1,0 +1,27 @@
+From 91329b204306f808eda73db0f14248484a410e7b Mon Sep 17 00:00:00 2001
+From: jayant-yadav <jayantyadav202@gmail.com>
+Date: Thu, 16 Mar 2017 23:34:19 +0530
+Subject: [PATCH] updated inv api
+
+---
+ mig-api/investigator_endpoints.go | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/mig-api/investigator_endpoints.go b/mig-api/investigator_endpoints.go
+index 62a4d27..eb28caf 100644
+--- a/mig-api/investigator_endpoints.go
++++ b/mig-api/investigator_endpoints.go
+@@ -195,6 +195,10 @@ func updateInvestigator(respWriter http.ResponseWriter, request *http.Request) {
+ 			if errStatus != nil || errInvperm != nil {
+ 				panic(err)
+ 			}
++			errInvperm = ctx.DB.UpdateInvestigatorPerms(inv)
++			if errInvperm != nil {
++				panic(err)
++			}
+ 			ctx.Channels.Log <- mig.Log{OpID: opid, Desc: fmt.Sprintf("Investigator %.0f permissions changed and status changed to %s", inv.ID, inv.Status)}
+ 		}
+ 	}
+-- 
+2.7.4
+
