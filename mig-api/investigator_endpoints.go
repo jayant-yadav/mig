@@ -170,17 +170,15 @@ func updateInvestigator(respWriter http.ResponseWriter, request *http.Request) {
 	invperm := request.FormValue("permissions")
 	if inv.Status == "" && invperm == "" {
 		panic("No updates to the investigator were specified")
-	}
-	else{
-		if inv.Status != "" && invperm==""{
+	} else {
+		if inv.Status != "" && invperm == "" {
 			// update the investigator status in database
 			err = ctx.DB.UpdateInvestigatorStatus(inv)
 			if err != nil {
 				panic(err)
 			}
 			ctx.Channels.Log <- mig.Log{OpID: opid, Desc: fmt.Sprintf("Investigator %.0f status changed to %s", inv.ID, inv.Status)}
-		}
-		else if inv.Status == "" && invperm!=""{
+		} else if inv.Status == "" && invperm != "" {
 			err = json.Unmarshal([]byte(invperm), &inv.Permissions)
 			if err != nil {
 				panic(err)
@@ -190,12 +188,11 @@ func updateInvestigator(respWriter http.ResponseWriter, request *http.Request) {
 				panic(err)
 			}
 			ctx.Channels.Log <- mig.Log{OpID: opid, Desc: fmt.Sprintf("Investigator %.0f permissions changed", inv.ID)}
-		}
-		else {
+		} else {
 			// when both status and permissions are changed
-			errStatus = ctx.DB.UpdateInvestigatorStatus(inv)
-			errInvperm = json.Unmarshal([]byte(invperm), &inv.Permissions)
-			if errStatus != nil || errInvperm!= nil {
+			var errStatus = ctx.DB.UpdateInvestigatorStatus(inv)
+			var errInvperm = json.Unmarshal([]byte(invperm), &inv.Permissions)
+			if errStatus != nil || errInvperm != nil {
 				panic(err)
 			}
 			ctx.Channels.Log <- mig.Log{OpID: opid, Desc: fmt.Sprintf("Investigator %.0f permissions changed and status changed to %s", inv.ID, inv.Status)}
