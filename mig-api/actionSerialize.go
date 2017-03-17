@@ -13,7 +13,7 @@ import (
 	"mig.ninja/mig/pgp"
 )
 // This API receives the "operation" parameter, unmarshalls into interface and returns its marshall
-func actionValidate(respWriter http.ResponseWriter, request *http.Request) {
+func actionSerialize(respWriter http.ResponseWriter, request *http.Request) {
 
 resource := cljs.New(loc)
 defer func() {
