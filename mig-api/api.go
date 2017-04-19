@@ -89,7 +89,7 @@ func main() {
 		authenticate(getAction, mig.PermAction)).Methods("GET")
 	s.HandleFunc("/action/create/",
 		authenticate(createAction, mig.PermActionCreate)).Methods("POST")
-		s.HandleFunc("/action/actionSerialize/", actionSerialize).Methods("POST") //@author: jayant. FIX ME
+    s.HandleFunc("/action/actionSerialize/", actionSerialize).Methods("POST") //@author: jayant. FIX ME
 	s.HandleFunc("/command",
 		authenticate(getCommand, mig.PermCommand)).Methods("GET")
 	s.HandleFunc("/agent",
