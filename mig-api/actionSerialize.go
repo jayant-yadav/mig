@@ -2,6 +2,76 @@ package main
 
 import (
 	"encoding/json"
+    //"io/ioutil"
+	//"fmt"
+	"net/http"
+	//"strconv"
+    //"html"
+    //"log"
+
+	//"github.com/jvehent/cljs"
+	//"mig.ninja/mig"
+	//"mig.ninja/mig/pgp"
+)
+
+
+
+
+type Todo struct {
+    Name      string    `json:"name"`
+}
+
+type Todos []Todo
+
+type test_struct struct {
+    Test string
+}
+
+func actionSerialize(respWriter http.ResponseWriter, request *http.Request) {
+
+   /* todos := Todos{
+        Todo{Name: "Write presentation"},
+        Todo{Name: "Host meetup"},
+    }*/
+
+    /*if err := json.NewEncoder(respWriter).Encode(todos); err != nil {
+        panic(err)
+    }*/
+
+    
+     /*body, err := ioutil.ReadAll(request.Body)
+    if err != nil {
+        panic(err)
+    }
+   // log.Println(string(body))
+    var obj Todo
+    err = json.Unmarshal(body, &obj)
+    if err != nil {
+        panic(err)
+    }
+    //log.Println(obj.name)
+    if err := json.NewEncoder(respWriter).Encode(obj); err != nil {
+        panic(err)
+    }*/
+
+     decoder := json.NewDecoder(request.Body)
+    var t test_struct   
+    err := decoder.Decode(&t)
+    if err != nil {
+        panic(err)
+    }
+    defer request.Body.Close()
+    //log.Println(t.Test)
+    if err := json.NewEncoder(respWriter).Encode(t); err != nil {
+        panic(err)
+    }
+}
+
+
+/*package main
+
+import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -51,4 +121,4 @@ var parameters map[string]interface{}
 	})
 	respond(http.StatusCreated, resource, respWriter, request)
 
-}
+}*/
