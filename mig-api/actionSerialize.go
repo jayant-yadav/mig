@@ -54,7 +54,7 @@ func actionSerialize(respWriter http.ResponseWriter, request *http.Request) {
         panic(err)
     }*/
 
-     decoder := json.NewDecoder(request.Body)
+     /*decoder := json.NewDecoder(request.Body)
     var t test_struct   
     err := decoder.Decode(&t)
     if err != nil {
@@ -64,7 +64,19 @@ func actionSerialize(respWriter http.ResponseWriter, request *http.Request) {
     //log.Println(t.Test)
     if err := json.NewEncoder(respWriter).Encode(t); err != nil {
         panic(err)
+    }*/
+    
+    var parameters map[string]interface{}
+    decoder := json.NewDecoder(request.Body)
+    err := decoder.Decode(&parameters)
+    if err != nil {
+        panic(err)
     }
+    defer request.Body.Close()
+     if err := json.NewEncoder(respWriter).Encode(parameters); err != nil {
+        panic(err)
+     }
+    
 }
 
 
