@@ -81,23 +81,24 @@
             </md-select>
             <div flex ng-if="addModule">
                 Path:
-                <input ng-model="path">
+                <input ng-model="operation.parameters.paths">
                 <br>
                 <br> Name:
-                <input ng-model="name">
+                <input ng-model="operation.parameters.names">
                 <br>
                 <br> Size:
-                <input ng-model="size">
+                <input ng-model="operation.parameters.sizes">
                 <br>
                 <br> mode:
-                <input ng-model="mode">
+                <input ng-model="operation.parameters.modes">
                 <br>
                 <br> mtime:
-                <input ng-model="mtime">
+                <input ng-model="operation.parameters.mtimes">
                 <br>
                 <br> content:
-                <input ng-model="content">
+                <input ng-model="operation.parameters.contents">
             </div>
+            <md-button class="primary" ng-click="addFile()">add</md-button>
         </div>
     </md-content>
 </md-content>
