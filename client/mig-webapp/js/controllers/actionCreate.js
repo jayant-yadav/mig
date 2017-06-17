@@ -58,17 +58,20 @@ app.controller('actionCreateCtrl', ['$scope', '$q', '$mdDialog', '$mdSidenav', '
         }
     };
 
-    $scope.addFile=function(){
+    var serializedActionParams = {};
+
+    $scope.addFile = function () {
         $http.post('../api/v1/action/actionSerialize/', $scope.operation).success(function (response) {
-        console.log(response);
-        /* $mdToast.show($mdToast.simple().textContent('Investigator Updated!').position('right').hideDelay(3000));
-         $mdDialog.hide();*/
-    }).error(function (err) {
-        //        window.alert(err.collection.error.message);
-        console.log(err);
-    });
+            console.log(response);
+            /* $mdToast.show($mdToast.simple().textContent('Investigator Updated!').position('right').hideDelay(3000));
+             $mdDialog.hide();*/
+            serializedActionParams = response;
+        }).error(function (err) {
+            //        window.alert(err.collection.error.message);
+            console.log(err);
+        });
     }
-    
+
     /*CAll the action validate api here*/
 
     /* $http({
@@ -92,7 +95,7 @@ app.controller('actionCreateCtrl', ['$scope', '$q', '$mdDialog', '$mdSidenav', '
          }
      })*/
 
-    
+
 
 
 
