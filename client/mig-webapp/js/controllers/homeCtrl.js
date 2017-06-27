@@ -1,12 +1,7 @@
-app.controller('homeCtrl', ['$scope', '$mdDialog', '$mdSidenav', '$state', '$http', '$timeout', 'dashboardService', function ($scope, $mdDialog, $mdSidenav, $state, $http, $timeout, dashboardService) {
+app.controller('homeCtrl', ['$scope', '$mdDialog', '$mdSidenav', '$state', '$http', '$timeout', function ($scope, $mdDialog, $mdSidenav, $state, $http, $timeout) {
 
     $scope.showDashboard = 0;
     $scope.file = 0;
-
-
-
-    /*$scope.dashboard = dashboardService.query();
-//console.log($scope.dashboard);*/ //FIXME: get using ngresource
 
     $http.get('../api/v1/dashboard').success(function (response) {
         $scope.dashboard = response.collection.items;

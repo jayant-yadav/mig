@@ -62,3 +62,26 @@ th {
 #homeTable {
     width:100% ;
 }
+
+.heading1 {
+    font-family: 'Eczar', serif;
+    font-size:40px; 
+    margin-bottom:0; 
+    margin-top:10px; 
+    margin-left:2%;
+}
+
+#heading2 {
+    margin-left:10%; 
+    margin-top:0;
+}
+
+#mig_logo {
+    width:100%; 
+    height:auto;
+}
+
+#sidenav {
+    max-width:280px; 
+    background-color:rgb(16, 108, 200);
+}

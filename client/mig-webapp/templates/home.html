@@ -1,8 +1,8 @@
 <section flex layout="row" ng-cloak>
     <div flex="50" layout="column">
         <div flex>
-            <h2 flex style="font-family: 'Eczar', serif; font-size:40px; margin-bottom:0; margin-top:10px; margin-left:2%;">Mozilla Investigator</h2>
-            <h3 style="margin-left:10%; margin-top:0;"> Mozilla's real-time digital forensics and investigation platform </h3>
+            <h2 flex class="heading1">Mozilla Investigator</h2>
+            <h3 id="heading2"> Mozilla's real-time digital forensics and investigation platform </h3>
         </div>
         <div flex>
 
@@ -10,7 +10,7 @@
     </div>
     <div flex="25" layout="column">
         <span flex></span>
-        <img style="width:100%; height:auto;" src="./img/mig_logo.png" alt="mig logo">
+        <img id="mig_logo" src="./img/mig_logo.png" alt="mig logo" >
         <span flex></span>
     </div>
     <div flex="25" layout="column">
@@ -58,7 +58,7 @@
     <!--    <div flex>-->
     <md-content layout="row" flex>
 
-        <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4" style="max-width:280px; background-color:rgb(16, 108, 200);">
+        <md-sidenav id="sidenav" class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
             <md-toolbar class="md-theme-light" style="background-color:#0D47A1;">
                 <h1 class="md-toolbar-tools">Modules</h1>
             </md-toolbar>

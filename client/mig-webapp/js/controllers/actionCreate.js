@@ -1,4 +1,4 @@
-app.controller('actionCreateCtrl', ['$scope', '$q', '$mdDialog', '$mdSidenav', '$state', '$http', '$timeout', 'dashboardService', function ($scope, $q, $mdDialog, $mdSidenav, $state, $http, $timeout, dashboardService) {
+app.controller('actionCreateCtrl', ['$scope', '$q', '$mdDialog', '$mdSidenav', '$state', '$http', '$timeout', function ($scope, $q, $mdDialog, $mdSidenav, $state, $http, $timeout) {
 
     $scope.fileOptions = 0;
 

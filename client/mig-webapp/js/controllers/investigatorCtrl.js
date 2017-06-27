@@ -1,4 +1,4 @@
-app.controller('investigatorCtrl', ['$scope', '$q', '$mdDialog', '$mdSidenav', '$state', '$http', '$timeout', '$mdToast', 'dashboardService', function ($scope, $q, $mdDialog, $mdSidenav, $state, $http, $timeout, $mdToast, dashboardService) {
+app.controller('investigatorCtrl', ['$scope', '$q', '$mdDialog', '$mdSidenav', '$state', '$http', '$timeout', '$mdToast', function ($scope, $q, $mdDialog, $mdSidenav, $state, $http, $timeout, $mdToast) {
     // $scope.investId = 0;
     // var noOfInvestigators = 0;
     $scope.showKeyVar = 1;
